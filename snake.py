@@ -23,6 +23,12 @@ class Snake:
             pixel.goto(STARTING_POSITIONS[seg_num])
             self.segments.append(pixel)
 
+    def create_segment(self):
+        pixel = Turtle(shape="square")
+        pixel.color('white')
+        pixel.penup()
+        self.segments.append(pixel)
+
     def move(self):
 
         # will tell the current segment to go to the x,y location of the segment in front of it

@@ -1,5 +1,6 @@
 from turtle import Screen
 from snake import Snake
+from food import Food
 import time
 
 screen = Screen()
@@ -9,7 +10,7 @@ screen.tracer(0)
 
 # create a Snake object
 snake = Snake()
-
+food = Food()
 screen.listen()
 
 screen.onkey(snake.up, "Up")
@@ -25,7 +26,10 @@ while game_is_on:
     # only update the screen refresh once all the segments moved
     screen.update()
     # use a slight delay between movements to slow down the motion
-    time.sleep(.1)
+    time.sleep(.2)
     snake.move()
+    if snake.head.distance(food) < 15:
+        snake.create_segment()
+        food.refresh()
 
 screen.exitonclick()
