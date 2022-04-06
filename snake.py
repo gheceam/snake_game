@@ -29,6 +29,11 @@ class Snake:
         pixel.penup()
         self.segments.append(pixel)
 
+    def check_collision(self):
+        for segment in self.segments[1:]:
+            if self.head.distance(segment) < 10:
+                return True
+
     def move(self):
 
         # will tell the current segment to go to the x,y location of the segment in front of it
@@ -38,6 +43,7 @@ class Snake:
             self.segments[seg_num].goto(new_x, new_y)
         # move the head of the snake 20 steps forward
         self.head.forward(MOVE_DISTANCE)
+        return self.check_collision()
 
     def up(self):
         if self.head.heading() != DOWN:
